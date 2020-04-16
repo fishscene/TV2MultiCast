@@ -2,7 +2,7 @@
 Over the Air TV to MultiCast
 
 LOCATION
-United States
+- United States (ATSC OTA broadcast standard)
 
 HARDWARE
 - Hauppauge WinTV-dualHD (USB), or an ATSC TV tuner supported by the Linux Kernel
