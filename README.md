@@ -25,6 +25,20 @@ If Multicasting does not work, ensure you have completely uninstalled Wireshark 
 
 
 
+## Streaming Compuer Setup - Show multiple TV tuners for WinTV-dualHD in Ubuntu
+https://hauppauge.com/pages/support/support_linux.html?#ubuntu
+
+     ls /dev/dvb ## You should see "adapter0" ## This tells us we don't have the firmware or we'd see "adapter1" as well.
+     sudo add-apt-repository ppa:b-rad/kernel+mediatree+hauppauge ## Install the PPA.
+     sudo apt-get update ## Update our package database so it is aware of the new PPA.
+     dpkg -l | grep linux-image-generic-hwe ## If a line is displayed beginning with "ii", then you are running the HWE version of Ubuntu. 
+     sudo apt-get install linux-hwe-mediatree ## !ONLY IF YOU HAVE HWE version of Ubuntu!
+     sudo apt-get install linux-mediatree ## !ONLY IF YOU DO NOT HAVE HWE version of Ubuntu!
+     sudo shutdown -r now ## Reboot
+     ls /dev/dvb ## You should see "adapter0" and "adapter1"
+     
+     
+
 ## Streaming Computer Setup - Get the OTA tv channels
 Install all updates, and install needed applications:
 
@@ -58,6 +72,10 @@ Input the following:
     239.255.0.1:1234 1 1
     239.255.0.2:1234 1 2
     239.255.0.3:1234 1 3
+    
+If you have multiple IP addresses/adapters on the streaming computer and want to send the broadcast over a specific one, add "@ipaddress" of the adapter you want to send it on. For example, if you have 2 adapters and one is "192.168.1.10" and the second is "192.168.1.20":
+
+    239.255.0.1:1234@192.168.1.20 1 1
   
 Now for the fun part:
 
@@ -86,7 +104,7 @@ Let's cancel the stream (ctrl-c) on the Streaming computer. We're going to run i
 Create a new screen called "tv0". 0 is the number of our TV Tuner adapter:
 
     screen -dm -S tv0
-    screen -S tv0 -X stuff "sudo dvblast -a 0 -f 177000000 -b 6 -c ~/dvblast/KSPS-HD.cfg -m VSB_8 -e\n"
+    screen -S tv0 -X stuff "sudo dvblast -a 0 -f 177000000 -b 6 -c ~/dvblast/KSPS-HD.cfg -m VSB_8 -e -W -Y\n"
     screen -r tv0
 
 Now we can go back to our main terminal by pressing:
