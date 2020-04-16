@@ -25,7 +25,7 @@ If Multicasting does not work, ensure you have completely uninstalled Wireshark 
 
 
 
-## Streaming Compuer Setup - Show multiple TV tuners for WinTV-dualHD in Ubuntu
+## Streaming Computer Setup - Show multiple TV tuners for WinTV-dualHD in Ubuntu
 https://hauppauge.com/pages/support/support_linux.html?#ubuntu
 
      ls /dev/dvb ## You should see "adapter0" ## This tells us we don't have the firmware or we'd see "adapter1" as well.
