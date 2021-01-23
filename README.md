@@ -213,62 +213,62 @@ LOCATION REQUIREMENTS
     version: '2'
     
     services:
-       tvstream_scan:
-         image: fishscene/tv-multicast:latest
-         container_name: tvstream_scan
-         restart: "no"
-         volumes:
-           - tv-multicast:/config
-         environment:
-           - PERFORMSCAN=true
-         network_mode: host
-         devices:
-           - /dev/dvb:/dev/dvb
-     
-       tvstream_0_593000000:
-         image: fishscene/tv-multicast:latest
-         container_name: tvstream_0_593000000
-         restart: always
-         depends_on:
-           - "tvstream_scan"
-         volumes:
-           - tv-multicast:/config
-         environment:
-           - PERFORMSCAN=false
-           - ADAPTERNUMBER=0
-           - FREQUENCY=593000000
-           - DELIVERY=ATSC
-           - SITENAME=MYLOCATION
-           - NAME=MYNAME
-         network_mode: host
-         devices:
-           - /dev/dvb:/dev/dvb
-           
-       tvstream_1_509000000:
-         image: fishscene/tv-multicast:latest
-         container_name: tvstream_1_509000000
-         restart: always
-         depends_on:
-           - "tvstream_scan"
-         volumes:
-           - tv-multicast:/config
-         environment:
-           - PERFORMSCAN=false
-           - ADAPTERNUMBER=1
-           - FREQUENCY=509000000
-           - DELIVERY=ATSC
-           - SITENAME=MYLOCATION
-           - NAME=MYNAME
-         network_mode: host
-         devices:
-           - /dev/dvb:/dev/dvb
-           
-       tvstream_sapserver:
-         image: fishscene/tv-sap:latest
-         container_name: tvstream_sapserver
-         depends_on:
-           - "tvstream_scan"
-         restart: always
-         volumes:
-           - tv-multicast:/config
-         network_mode: host
+      tvstream_scan:
+        image: fishscene/tv-multicast:latest
+        container_name: tvstream_scan
+        restart: "no"
+        volumes:
+          - tv-multicast:/config
+        environment:
+          - PERFORMSCAN=true
+        network_mode: host
+        devices:
+          - /dev/dvb:/dev/dvb
+    
+      tvstream_0_593000000:
+        image: fishscene/tv-multicast:latest
+        container_name: tvstream_0_593000000
+        restart: always
+        depends_on:
+          - "tvstream_scan"
+        volumes:
+          - tv-multicast:/config
+        environment:
+          - PERFORMSCAN=false
+          - ADAPTERNUMBER=0
+          - FREQUENCY=593000000
+          - DELIVERY=ATSC
+          - SITENAME=MYLOCATION
+          - NAME=MYNAME
+        network_mode: host
+        devices:
+          - /dev/dvb:/dev/dvb
+          
+      tvstream_1_509000000:
+        image: fishscene/tv-multicast:latest
+        container_name: tvstream_1_509000000
+        restart: always
+        depends_on:
+          - "tvstream_scan"
+        volumes:
+          - tv-multicast:/config
+        environment:
+          - PERFORMSCAN=false
+          - ADAPTERNUMBER=1
+          - FREQUENCY=509000000
+          - DELIVERY=ATSC
+          - SITENAME=MYLOCATION
+          - NAME=MYNAME
+        network_mode: host
+        devices:
+          - /dev/dvb:/dev/dvb
+          
+      tvstream_sapserver:
+        image: fishscene/tv-sap:latest
+        container_name: tvstream_sapserver
+        depends_on:
+          - "tvstream_scan"
+        restart: always
+        volumes:
+          - tv-multicast:/config
+        network_mode: host
