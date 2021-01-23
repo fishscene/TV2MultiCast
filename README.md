@@ -210,9 +210,9 @@ LOCATION REQUIREMENTS
 - United States (ATSC is USA broadcast standard - this can be changed in a variable.)
 
 ### Docker Stack
-     version: '2'
-     
-     services:
+    version: '2'
+    
+    services:
        tvstream_scan:
          image: fishscene/tv-multicast:latest
          container_name: tvstream_scan
